@@ -330,7 +330,7 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
-
+  --
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     -- By default, Telescope is included and acts as your picker for everything.
@@ -362,6 +362,16 @@ require('lazy').setup({
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
+
+    {
+      'seblyng/roslyn.nvim',
+      ---@module 'roslyn.config'
+      ---@type RoslynNvimConfig
+      opts = {
+        -- your configuration comes here; leave empty for default settings
+      },
+    },
+
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
@@ -641,6 +651,11 @@ require('lazy').setup({
             Lua = {},
           },
         },
+
+        pyright = {},
+        html = {},
+        cssls = {},
+        ts_ls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -725,12 +740,9 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+          },
         },
         opts = {},
       },
@@ -948,5 +960,8 @@ require('lazy').setup({
   },
 })
 
+require 'custom.plugins.snippets'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- Additional configuration can be added here=2 sts=2 sw=2 et
+-- vim: ts
